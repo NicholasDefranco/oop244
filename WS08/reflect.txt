@@ -1,0 +1,71 @@
+// Workshop 8 - Virtual Funtions
+// Name: Nicholas Defranco
+// Student #: 106732183
+// Course: OOP244 Winter 2019
+// File: reflect.txt
+	
+	In this workshop, I learned how to create a hierarchy of classes 
+with an interface at the top of the hierarchy. An interface is a special 
+type of abstract class. This is because interfaces only contain pure virtual 
+functions, which are functions that only have a declaration and no definition
+. Derived classes of the interface provide the implementation or the 
+definition of the function. Interfaces provide just enough information about 
+the hierarchy for use by the client code. 
+	
+	If a class derives from an interface or abstract class, it may or 
+may not provide implementation for all declared member functions. If it does 
+not, the class is considered to be abstract according to the compiler as it 
+requires another class to provide implementation that this class did not. 
+This is what happened in the workshop when the Account class was declared, 
+even though it declared common logic for all types of Accounts it did not 
+define all functions declared in iAccount. If a derived class does provide 
+implementation for all declared functions, then it is considered to be a 
+concrete class as it provides all required logic allowing it to be 
+instantiated. 
+
+	Furthermore, since all functions declared in an interface are virtual
+, binding to a member function is done at run-time. This is instructs the 
+compiler and linker to not bind at compile/link time but wait until run-time 
+to bind to a member function. This allows the client to create a pointer of 
+the most base class within the hierarchy. This pointer to an object is known 
+as a polymorphic object. The type of the pointer is known as the static type 
+as it is known at compile time. The client can dynamically allocate memory 
+to instantiate any concrete class of their choice within the hierarchy hence 
+the term polymorphic. The type of the dynamically allocated object is known 
+as the dynamic type as it is only known at run time. Since the binding 
+process happens at run-time,  the compiler binds to dynamic type’s member 
+function. The client does not need to know that this is occurring as the 
+compiler handles the process automatically. This process is called dynamic 
+dispatch. Thus, the client only really needs to know about the interface. 
+
+	The interface requires a virtual destructor as the client is 
+dynamically instantiating objects. As mentioned before, virtual allows for 
+dynamic dispatch which is important when deallocating objects as the 
+compiler should be directed to the most derived version of the destructor 
+based on the dynamic type. This way, when the client deallocates the object, 
+the compiler deallocates the most derived version possible first and then is 
+able to deallocate the rest of the object moving up in the hierarchy. If the 
+virtual keyword is missing, the compiler will not be aware of the dynamic 
+type and will bind to the destructor based on the static type. When the 
+dynamic object is deallocated, it will miss memory that should have been 
+deallocated as it belonged to the dynamic portion of the object. Thus, it is 
+very important to create destructors that will perform dynamic dispatch when 
+a object is about to be destroyed.
+
+	Lastly, I learned the difference between overloading, overriding and 
+shadowing. Overloading is the idea of being able to create multiple 
+functions with the same identifier allowing for more communication options 
+to the client as well as making it easier to remember for the client as 
+multiple functions with similar logic or same logic have the same name. 
+Overriding is the idea of a derived class providing implementation for a 
+member function that has already been declared or defined in the base class. 
+The new definition could use the definition in the base class and add on to 
+it, or provide completely different implementation. Lastly, shadowing is the 
+idea that when a member function has been overridden, the base class version 
+of the function is inaccessible unless it is explicitly called using the 
+scope resolution operator. Shadowing occurs based on the identifier, if 
+identifiers match, the base class version is inaccessible.
+
+Quiz Reflection
+
+I got 12 out of 12 

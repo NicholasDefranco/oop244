@@ -1,0 +1,75 @@
+// Workshop 7 - Derived Classes
+// Name: Nicholas Defranco
+// Student #: 106732183
+// Course: OOP244 Winter 2019
+// File: reflect.txt
+
+	In this Workshop, I learned one of the various relationships that 
+classes can have. This relationship is known as inheritance. This 
+relationship involves a class taking the structure of another class; that is, 
+a class that has inherited the majority of the details of another class. 
+The class that inherited details from another class is known as the derived 
+class, and the class that has been inherited from is known as the base class 
+in the c++ language.  This concept comes from the idea that objects or nouns 
+in the in the real world which can be all categorized into a group of a 
+more generic thing. An example of this could be programs at Seneca college. 
+Computer programming as well as Computer Networking are both a type of an 
+ICT program but an ICT program is not necessarily always a Computer 
+Programming program. The ICT program is analogous to the base class and the 
+computer programming and networking programs are analogous to derived classes
+. Derived classes refer to a more specific object of the more generic base 
+class as shown in the example. The example also demonstrates that the 
+derived class is known as a type of the base class. This relationship 
+creates a hierarchy of classes, where the classes refer to a more specific 
+thing as you go down the hierarchy. 
+
+	Since the derived class is a type of the base class, the derived 
+class inherits details from the base class. These details include, data 
+members and all non-special member functions. The derived class depends on 
+the existence of the base class. In the workshop, the SuperHero class 
+requires to know the structure of the Hero class in order to inherit from it
+. When a derived class inherits a base class, the base class does not change 
+in any way. This allows for any amount of classes to inherit from the base 
+class. Thus in the workshop, the Hero class does not need to know the 
+existence of the Super Hero class. 
+
+	Furthermore, Although the derived class inherits the structure of 
+the base class, the derived class should not change the state of data 
+members declared in the base class. Instead, we change the state of these 
+data members through communication links similar to the way client code has 
+to. However, I learned that it is possible to create queries only available 
+to the hierarchy and not the client. This is possible with the protected 
+access modifier. A query or modifier member function with protected access 
+allows derived classes to see the member function (as long as it is not 
+shadowed).
+
+	Lastly, I learned the idea of shadowing. If a member function has 
+been declared with the same identifier as a member function that has already 
+been defined in the base class, the base class’s version is then 
+inaccessible unless the scope resolution operator is used. When member 
+functions are called on objects, the most derived version is always called 
+unless explicitly overridden. Free helper functions can be used to assist 
+each class in the hierarchy thus, they must be overloaded. Similar to member 
+functions, the compiler binds a call to the helper function that accepts the 
+most derived version of the object passed as an argument. Sometimes, the 
+most derived version available is the base class version. The parameters in the
+base class version are known as polymorphic objects as they can hold 
+the address of or reference to any derived version of the class. Since 
+instance of the derived class are “a type of” the base class, the call is 
+valid. This is exactly the situation in the workshop, when a Hero and a 
+superHero was passed in a function call. The most derived version of the 
+function available is the Hero class’s version. The SuperHero object is 
+morphed into a Hero object and the function executes normally as if the 
+SuperHero object was a Hero as the SuperHero portion of the object is not 
+visible in the Hero class’s version. Thus, it printed out "Ancient Battle".
+
+Quiz 7 reflection
+
+A concrete class is a class that can be instantiated. A concrete class 
+contains no pure virtual member functions. This means all member functions 
+declared in the class definition must be defined. Since concrete classes 
+provide implementation for that specific dynamic type, it does not require 
+any other classes to derive from it, unlike abstract classes, which require 
+other classes to inherit from it to provide implementation.
+
+

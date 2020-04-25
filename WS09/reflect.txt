@@ -1,0 +1,66 @@
+// Workshop 9 - Templates
+// Name: Nicholas Defranco
+// Student #: 106732183
+// Course: OOP244 Winter 2019
+// File: reflect.txt
+
+In this workshop, I learned how to create a function template. A template 
+declaration consists of a header and a definition. The header is where a 
+type is associated with an entity just like any other entity declaration. 
+The type however is generic; that is, it can represent any or many different 
+types. Under the template header contains a template definition which 
+contains logic with the generic type declared in the template header. Using 
+the generic type declared, makes the logic itself generic. Function 
+templates reside the header file a module, the reason for this is described 
+in question 1. Creating generic logic is beneficial, the reason for that is 
+explained in question 3. Furthermore, I learned the reason to use 
+constrained casts instead of the c-styled casting. I personally used 
+static_cast in the workshop. The static_cast is used to a convert a type 
+into a another but related data type, such as a int to a double. The benefit 
+of using constrained casts is that they perform validation at compile time 
+to ensure the conversion the programmer is trying to make is legal; that is, 
+a conversion that will not cause undefined behaviour with a future 
+instruction due to possible ambiguities. If c-styled casting was used, there 
+would be no validation as the conversion occurs at run-time. Thus, no type 
+checking.
+
+1)  If template functions appear in Data.cpp, there will be compile errors. 
+The logical reasoning behind this is that, the compiler must have access to 
+the template function during the compilation process in order for it to be 
+able to generate the concrete function that the client actually calls based 
+on the types passed. This also allows the compiler to perform any required 
+type checking to ensure all operations inside the body of the template 
+function do not break any rules of the types that were passed by the client. 
+If the template declaration was placed in the cpp file, the type checking 
+process can not occur. This is because the caller will only be aware of the 
+logic in the function after compilation as well as after type-checking, 
+during the linking process.
+
+2) If I were to move the max function for example to the ws9_lab.cpp, the 
+code will not compile. This is because the answers function defined in the 
+Data.cpp file, requires the declaration and definition of the max function 
+template to be visible to it as it calls it. In order to make it visible, 
+the function template must be declared and defined the Data.h as Data.cpp 
+includes Data.h. Therefore, all template function declarations must be in 
+Data.h (specifically for this project).
+
+3) This lab could have been completed by overloading all the functions to 
+accept integer and double types and the output (the result of code executing
+) would be the same. However, the benefit of using template functions is 
+that the programmer can create generic logic that can work on many different 
+data types and have the compiler generate the proper code necessary to 
+execute the logic. This allows heavy reuse of code. The major advantage of 
+programming template is that the programmer only needs to program the logic 
+once. If the programmer made a mistake or wants to improve on their design 
+they would only need to change the logic in one place unlike manually 
+overloading functions, where the programmer would have to manually change 
+each overloaded version. This could lead to problems such as the programmer 
+forgetting to edit a overloaded version. Therefore, using templates allows 
+for code to be very easy to maintain.
+
+4) There is no difference between template<class T>and template<typename T>. 
+They both operate the same in all contexts learned this far in the course.
+
+Quiz Reflection
+
+I got 21 out of 21

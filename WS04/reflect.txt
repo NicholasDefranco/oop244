@@ -1,0 +1,66 @@
+// Workshop 4 - Constructors
+// Name: Nicholas Defranco
+// Student #: 106732183
+// Course: OOP244 Winter 2019
+// File: reflect.txt
+
+	In this workshop, I have the learned why constructors are very useful 
+in object-oriented applications. This is because they are automatically invoked
+when the class is instantiated. This property of the constructor is used to 
+initialize the data members of the object and used to execute any initial 
+logic. By initializing all the private data members of an object, we can 
+confirm the object is in a well-defined state before any member function is 
+called on avoiding the possibility to ‘break’ member functions logic or the 
+object itself. Initializing the data members could include setting them to 
+values suggested by the client code (that is, values passed as arguments to 
+the constructor). The logic within a constructor validates incoming data 
+from the client code and ensures the client passed valid data. If the data 
+is not valid, the data is ignored, and the object is placed in a safe empty 
+state. Initializing the data members in a constructor could also mean 
+directly setting each data members to a default value putting the current 
+object in a safe empty state. This is what the default constructor is set 
+up to do. (1)Putting an object in a safe empty state is the practice of 
+setting all data members to a default value except one data member which 
+stores a specific value chosen by the programmer which determines that 
+nothing meaningful is stored in the object. The class’ query member functions 
+are set up to ensure that the special data member within the object that 
+invoked the function is not currently equal to the special value before 
+executing any logic (as in, the query functions ensure the object is not 
+‘empty’ before reporting).
+
+	2)The constructor can be overloaded to give the client more options at 
+creation-time (constructors with different parameter lists). This allows the 
+client code to pass any amount of values to be written to the data members of 
+a given object, assuming the data is valid. If some parameters were not 
+initialized, they would be set to a default value. A possible issue can 
+arise which is repeating validation logic as each overloaded constructor 
+accepts data from the client. A solution to this problem is to localize 
+constructor logic, which includes empty state logic and validation logic. 
+To solve the validation problem, all validation logic is placed
+in the constructor that accepts arguments equal to the amount of data 
+members (most likely the constructor with the most parameters). The other 
+constructors that would have had validation logic are set up to create a 
+temporary object that invokes the constructor with the validation logic 
+passing default values for the data expected by the constructor that has not 
+been satisfied by the client. Once the temporary object has been constructed, 
+all the data members are copied to the current object (shallow copied and 
+deep copied if necessary). If the data passed to the constructor fails the 
+validation test, instead of setting all the default values to the data members
+manually again, we can set the logic up such that the validation constructor 
+similarly creates a temporary object that invokes the default constructor and 
+once again, constructs a temporary object, then follows the same result as 
+the validation logic solution mentioned before (shallow and deep copying to 
+current object). This solution is the main solution of how I reduced
+code redundancy within the project.  
+
+	3) The canTravelWith() member function can access private data of the 
+object referenced in its parameter. This is because the member function is 
+within the classes’ scope (class scope encompasses member function scope). 
+Since this is the case, the private data members for every instance are 
+visible. This indicates that if an object of the same type is passed to a 
+member function when invoked, its implicit parameters are also being passed 
+to the member function. Thus, the function can access the private data of the 
+object that was passed as a reference in the parameter list. 
+
+Quiz Reflection 
+I got 8 out of 8. 

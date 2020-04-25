@@ -1,0 +1,64 @@
+Workshop 3: Classes and Privacy
+Name: Nicholas Defranco
+Student #: 106732183
+Course: OOP244 Winter 2019
+File: Reflect.txt
+
+	In this workshop, I learned how to create a well-designed 
+object-oriented application. In this design, I learned the difference 
+between the compound types in the C++ language and the reason why classes 
+are the preferred compound type over the struct type. The difference is 
+that a struct is public by default and a class is private by default. The 
+privacy feature in the C++ language allows the programmer to hide 
+implementation details from client code, prohibiting client code, more 
+specifically the programmer, from accidentally changing the object's state 
+to an illegal state and breaking member functions. Importatnt details
+such as the state of the object are private. The only way the object's state
+can be modified are through public member functions that act as communication 
+links that allow the client code to indirectly access the data members of 
+an object. This design allows all incoming data passed as arguments from 
+the client code to be validated before the object's data members are 
+reassigned. If the data passed from the client code would otherwise put 
+the object in an illegal state, the data is rejected. Once data has been 
+rejected the object can either be placed in an empty state (also known as 
+safe empty state) or maintain its current state. Regardless of what solution 
+is chosen, the object is guaranteed to be in a well-defined state throughout 
+its lifetime. Thus, classes are used much more often than structs in object-
+oriented programming. 
+	
+	Furthermore, the data type I have selected to store the ISBN is the 
+data type long long. The reason I have chose this data type is because the 
+long long data type at the minimum, can store a 64-bit long number. This 
+means that regardless of the platform I decide to compile the application 
+on, it will compile and run as expected. If I chose a smaller integer data 
+type (as in a data type that has a smaller minimum amount of bit occupancy 
+in memory), compilation and/or execution success would vary among different 
+machines making it not very portable. This is because a long for example, 
+occupies at the minimum 32 bits of memory which is not enough to store a 
+13-digit number. On some machines, the long data type occupies more that 
+32 bits in memory and may occupy 64 bits (some machines have the long data 
+type and the long long data type occupy the same amount of memory), in which 
+case the program will execute and run otherwise it will either fail to 
+compile or fail at some point during execution (possible overflow or 
+underflow at unexpected places during execution). Thus, choosing the long 
+long data type promotes portability as it is consistent with its minimum 
+memory occupancy.
+	
+	Lastly, to be able to design the class in such a way that no changes 
+must be made to the Book::set(...) member function if a change to validation 
+logic is necessary, we must create a private member function that validates 
+the ISBN number(it is private because the function is not required to be 
+called explicitly outside of the class). The function will return a bool 
+determining whether the ISBN number is valid. The function will receive one 
+argument which is the ISBN number passed as one of the arguments from the 
+client code to the Book::set() member function. The set member function 
+takes the appropriate action based on what the helper function returns. 
+Therefore, the helper function contains all the validation logic for the set 
+function. If an update to the logic is required, it can be changed within 
+the helper function's body without requiring any changes to the set member 
+function. This is good practice as all logic is in one place and every time 
+it is required it can be called upon and any change required only needs to
+be done at that spot. 
+
+Quiz Reflection
+I got 10 out of 10

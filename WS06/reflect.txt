@@ -1,0 +1,79 @@
+// Workshop 6 - Class With a Resource
+// Name: Nicholas Defranco
+// Student #: 106732183
+// Course: OOP244 Winter 2019
+// File: reflect.txt
+
+	In this workshop, I have learned how to manage dynamic memory that is 
+associated with instances of the class. This dynamic memory is known as a 
+resource for the object. This resource is accessed through a resource 
+instance pointer which holds the address of the dynamically allocated 
+resource. The resource lies outside of the region of memory that was 
+allocated for the object itself. Since this is dynamic memory, deallocation 
+of the resource must be done before instances of the class go out of scope 
+to ensure there are no memory leaks.  However, the client code cannot 
+deallocate the memory as the resource instance variable is private and only 
+accessible in the class. This is when I learned how the destructor is very 
+important to be defined in a class when it requires resources. The 
+destructor is a special member function that is called automatically when an 
+object goes out of scope. This is where all  deallocation of an object’s 
+resources occur. 
+
+	Furthermore, I learned that every object’s data must be independent 
+of other objects. This means we cannot simply copy the values of the data 
+members if that data member is a resource instance pointer. Simply copying 
+the values stored in each instance variable from one object to another is 
+known as shallow copying. Copying resources requires another method of 
+copying known as deep copying. Deep copying involves copying values located 
+at the address pointed to by the resource instance pointer to a separate 
+region of memory pointed to by the destination object. Copying resources 
+from an existing object to another existing object involves deallocating any 
+previously allocated memory to the destination object and then allocating a 
+new block of memory to the destination object that points to enough memory 
+for the copying process to take place. Since deallocation is required, the 
+copying process can cause a serious run-time issue if the operands (objects) 
+to the assignment operator are referring to the same object. The issue that 
+can occur is due to the fact that objects are located at the same address, 
+deallocating the destination object resource (or resources) also deallocates 
+the resource associated with the source object. When the CPU attempts to 
+perform the copying process, the program will abruptly terminate throwing 
+the SIGSEGV (signal segmentation violation) to the process when the CPU 
+dereferences the source’ resource address as the data at the address of the 
+resource instance pointer no longer belongs to the source object. Thus, it 
+is very important to check for self assignment before any copying takes place. 
+
+	Furthermore, I learned the use of a copy constructor. The use is to 
+initialize a newly created object with an existing object. Logic for the 
+copy constructor involves allocating memory to the new object to hold enough 
+memory to  perform a deep copy from the source object to the new object. 
+Shallow copying is done to the instance variables that are not resource 
+instance pointers. This logic is similar to the copy assignment operator’s 
+logic. To avoid code duplication, I have designed the logic in the copy 
+constructor to directly call the copy constructor. However, all resource 
+instance pointers must be pointing to nullptr before the copy assignment 
+operator is called. This is because if we omit this assignment, the address(
+es) stored in the resource instance pointer(s) will be undefined. The logic 
+of the copy assignment operator, as mentioned in the last paragraph, 
+requires the resource(s) associated with the destination object to be 
+deallocated (even though it technically not required if called by the copy 
+constructor since there is no memory to deallocate, it must be there when it 
+is directly called with two existing objects). Deallocating an invalid 
+address can cause a run-time error known as fasttop. This is a very serious 
+run-time error. This can all be avoided if the value of the resource 
+instance pointers of the newly created object have a value of nullptr before 
+the memory at their their address(es) is/are deallocated. Deallocated a 
+nullptr address has no effect. 
+
+	NOTE: g++ compiler does not allow passing by-value to the copy 
+constructor, thus modifying code to test the result is not possible. 
+
+	If the argument for the copy constructor is passed by value, copying 
+the object by value to initialize the object in the parameter list would 
+require the copy constructor to be invoked to initialize the object, since 
+that call is passing an object by value to the copy constructor, that call 
+will also invoke the copy constructor. This creates an infinite loop due to 
+recursion since passing by value invokes the copy constructor as it is 
+initializing a newly created object which is one of the ways to invoke the 
+copy constructor. 
+
+	

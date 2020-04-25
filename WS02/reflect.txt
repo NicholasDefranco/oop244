@@ -1,0 +1,65 @@
+// Workshop 2 - Dynamic Memory
+// Name: Nicholas Defranco
+// Student #: 106732183
+// Course: OOP244 Winter 2019
+// File: reflect.txt
+
+	In this workshop, I have learned how to dynamically allocate memory in 
+the C++ language. During execution of this workshop, we request memory from 
+the operating system to store an array of CellPhone(s) using the new operator. 
+The operating system satisfies this request by allocating a region of memory 
+off the reserved region of memory specific for dynamic allocation. The 
+operating system returns the starting address of the allocated region 
+which we store in a pointer (which points to the same type that was 
+dynamically allocated, in our case, the pointer will be of type CellPhone). 
+Furthermore, I also learned that once we no longer require the allocated 
+region of memory, we must explicitly deallocate the region of memory using 
+the delete operator, then the pointer that was holding the address must 
+be reassigned to the value of nullptr. This memory, however, will 
+still be available for the application for future requests for dynamic 
+memory until the application terminates. If the application 
+allows the pointer to go out of scope before it attempts to 
+deallocate, the memory address of the allocated region is lost. This region of 
+memory is now irrecoverable until the application terminates. Another way a 
+memory leak can occur, is calling the new operator and storing the address 
+it returned in the same pointer that already stored the address of 
+the previous allocated region. The address of the previous allocated 
+region is now lost as well as all the data stored at those 
+addresses. Thus, if we decide to increase the size of the 
+array, we cannot simply use the new operator on the same pointer 
+holding the address to the existing array. Instead we 
+allocate a new region of memory temporarily to the new size we would like 
+and store the starting address in a temporary pointer variable. Then we 
+copy all elements of the previous array to the new array. The previous 
+allocated region is no longer required so we deallocate it. The pointer 
+that was holding the previously allocated region is reassigned to hold 
+the address of newly allocated region (pPhones is reassigned to hold the 
+address stored in the temporary pointer). The size of the array is now 
+increased.
+
+	Furthermore, I also learned how static memory differs from dynamic 
+memory. Static memory is allocated at load time and determined at compile-link 
+time. The array that stores the name of the phone model is an example of this. 
+The size of the array is known at compile time as it was initialized with a 
+constant. Variables stored in static memory are automatically deallocated 
+when they go out of scope. This memory is reused to allocate memory to other 
+static variables in order to minimize ram usage during execution (which 
+is all handled automatically). All static memory allocated at load time is 
+automatically deallocated once the application terminates. Thus, we do 
+not need explicitly deallocate static memory using the delete operator.
+
+	Lastly, in this workshop, we have overloaded the display() function 
+by having two declarations within the CellPhone.h file. These two declarations 
+have different definitions or meanings. The definitions are in the 
+CellPhone.cpp file. The C++ compiler can differentiate between the
+two declarations (function prototypes) by the different parameter 
+lists specified. This includes the order of parameters specified as well 
+as the parameter types (excludes the const qualifier). The prototypes 
+allow the compiler to validate the function call. Once all the modules in
+the project are compiled, the linker binds each 
+function call to the proper definition matching the argument types 
+to the parameter types in the definition (more specifically the 
+function header). 
+
+Quiz Reflection
+I got 10 out of 10

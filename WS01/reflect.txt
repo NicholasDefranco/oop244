@@ -1,0 +1,51 @@
+Workshop: 1
+Name: Nicholas Defranco
+Student #: 106732183
+Course: OOP244 Winter 244
+File: reflect.txt
+
+	In this workshop, I learned how to properly organize my code 
+into separate files. By thoughtfully organizing the code, we promote
+modularity. The organization process involves placing related functions, 
+each of which solve their own specific problem, in the same area within 
+the project (also known as a module). I learned that each module must
+contain a source code file (file containing all definitions for functions), 
+as well as a header file (which contains declarations for functions or 
+prototypes). Each function is designed to serve a very specific purpose 
+(solves a very specific problem, highly cohesive). This design has 
+taught me to separate all the functions in a programming problem 
+into modules according to the purpose that they serve and only that purpose. 
+Header files are important in this design as they give just enough
+information to outside modules to be able to call on functions within the
+module. This allows modules to work independently from each other. 
+When other modules require information of a specific module, 
+its header file is included. Therefore, header files are never compiled. 
+The header files are already included into the modules that require it 
+thus, they are already being compiled. 
+
+	Furthermore, this design procedure prohibits including .cpp files
+into other modules. Source files should never be included because if they 
+were included, the modules would no longer work independently of each other.
+This means that if a programmer were to compile the project, they would have
+to compile the entire application which could take a long time depending 
+on the size of the project. By avoiding the inclusion on source files
+and only including header files, we create indirect links to other modules
+providing only just enough information to validate function calls. This 
+makes the modules work independent of each other. This is much more 
+efficient for developing as you would only need to compile specific parts
+of the application where changes were made. The linker handles binding all
+of the compiled modules together to make one executable file.
+
+	Lastly, it is highly likely that if a large project is being 
+made, there will be many programmers working on the project. Namespaces 
+are very helpful in this situation in case a programmer 
+declares an entity of the same identifier as another programmer. 
+Surrounding all your declarations and their definitions in a namespace 
+avoids any conflict with identifiers. Namespaces allow programmers to create
+there own scopes. The only way a programmer can access data within this scope
+is if they explicitly specify what namespace they are using in the file either
+at the top or using the scope resolution operator. Namespaces can avoid
+a lot of simple mistakes programmers can make while developing.
+
+Quiz 1 Reflection
+I got 13 out of 13.

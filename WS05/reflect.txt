@@ -1,0 +1,70 @@
+Workshop 5 - Member Operator Overloads
+Name: Nicholas Defranco
+Student #: 106732183
+Course: OOP244 Winter 2019
+File: reflect.txt
+
+In this workshop, I have learned the reason as to why we overload operators as 
+members or helpers  of a class. When we overload an operator defined in the 
+C++ language, we give meaning to that operator when the operand when the 
+operands are a type we define. The main reason why they are used is because 
+instead of having a member functions, we can overload operators which allows 
+the client code to create readable expressions with objects as the operand 
+(or operands). While that could be achieved with only using member functions, 
+The expression will not be as readable and the identifiers of the member 
+functions must be remembered in order for the 
+client code to perform the computation they wish. Client code can easily 
+combine operands to create expressions to perform a more complex computation 
+with ease. I also learned that overloaded operators perform their 
+computation similar to the way the operators perform their computation on 
+the predefined data types. I also learned that the operators have syntactic 
+rules that we must follow. An example is that some operators return a copy 
+and some return an alias. (1)The operator+, for example, returns a copy of a 
+Fraction object and not an alias. This is because of the fact that the + 
+operator does not change the state of the operands thus a new object must be 
+made. Since a new Fraction object is made in the operator definition, it 
+cannot return it by reference as it is a local to the definition. More 
+precisely, you cannot return the address of a local object as the object 
+goes of of scope once the function returns. This means if you attempted to 
+do this, you would be returning the address of ‘destroyed object’ 
+which means the programmer cannot guarantee what is stored at the address 
+after the function returns.
+
+2) Temporary objects that were made at:
+- The creation of Fraction c -> temporary object was created to put current 
+object into safe empty state.
+- adding/multiplying two fractions -> creates a temporary object that calls 
+default constructor, if both operands are valid, the local object is 
+assigned to another newly created temporary object whose data members are 
+equal to the result of the addition/multiplication computation. This object 
+is the return value of the compute function which is then returned by the 
+member operator. - Using += operator -> the operator invokes the + operator 
+with the current object as one of the operands which returns the result as a 
+new Fraction object whose datamembers are immediately copied to the current 
+object (the Fraction object returned is removed from memory after the 
+function executes the statement). 
+
+3) I minimized code duplication (1)in 
+the 2 argument constructor by creating a temporary object that invokes the 
+default constructor and assigned to the current object if arguments passed 
+fail the validation test. This constructor also makes a call to reduce, this 
+is useful as when a computation is performed and a new Fraction object is 
+created, reduction is already handled in the constructor. (2)In display 
+function, instead of checking if the value stored in the current object’s 
+denominator is valid, I make a call to isEmpty() to do that. (3)In compute 
+member function, temporary objects were used instead of manually setting the 
+values of the instance variables (constructor handles reducing as well). (4)
+IsEmpty(const Fraction&) was used to ensure both operands were in a valid 
+state to be used. (5)In the operator+ and operator*, the logic is vary 
+similar, therefore both make a call to compute passing the value of the 
+numerator and the right operand to it. (6)In theoperator ==, the function 
+calls isEmpty(const Fraction&) to ensure both operands are not in a safe 
+empty state. (7)Operator !=, calls the == operator and negates the result (
+assuming operands are valid, if invalid, operator just returns false without 
+calling == operator). (8)The operator +=, invokes the + operator. The result 
+creates temporary object which is copied to the current object, then current 
+object is returned to the caller.
+
+Quiz reflection
+
+I got 5 out of 5.
